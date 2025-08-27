@@ -1,0 +1,26 @@
+{
+  "id": "profile_alice",
+  "label": "profile_alice",
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:3000/auth/profile",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJpYXQiOjE3NTYyNzg2NjMsImV4cCI6MTc1NjI4MjI2M30.L3U9opO3FUFUnt7wxJ8srhrd6m7MGoOdgI4ZtGZW8Ig"
+    },
+    "body": {}
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "id": 1,
+      "username": "alice",
+      "email": null,
+      "dateOfBirth": null,
+      "country": null,
+      "organization": null,
+      "rating": 1500
+    }
+  },
+  "error": null,
+  "ms": 8
+}

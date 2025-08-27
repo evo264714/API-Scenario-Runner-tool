@@ -1,0 +1,28 @@
+[
+    {
+      "id": "register_alice",
+      "title": "Register Alice",
+      "method": "POST",
+      "url": "/auth/register",
+      "body": {"username":"alice","password":"P@ssw0rd"},
+      "expect": { "status": [200,201] }
+    },
+    {
+      "id": "login_alice",
+      "title": "Login Alice",
+      "method": "POST",
+      "url": "/auth/login",
+      "body": {"username":"alice","password":"P@ssw0rd"},
+      "expect": { "status": 200, "body": { "token": "/.+/" } },
+      "save": { "token": "json.token" }
+    },
+    {
+      "id": "profile_alice",
+      "title": "Profile",
+      "method": "GET",
+      "url": "/auth/profile",
+      "headers": {"Authorization":"Bearer {{token}}"},
+      "expect": { "status": 200, "body": { "username": "alice" } }
+    }
+  ]
+  

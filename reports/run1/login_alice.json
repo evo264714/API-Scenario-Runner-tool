@@ -1,0 +1,22 @@
+{
+  "id": "login_alice",
+  "label": "login_alice",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:3000/auth/login",
+    "headers": {},
+    "body": {
+      "username": "alice",
+      "password": "P@ssw0rd"
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJpYXQiOjE3NTYyNzg2NjMsImV4cCI6MTc1NjI4MjI2M30.L3U9opO3FUFUnt7wxJ8srhrd6m7MGoOdgI4ZtGZW8Ig",
+      "message": "Login successful"
+    }
+  },
+  "error": null,
+  "ms": 34
+}

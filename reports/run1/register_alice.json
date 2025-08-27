@@ -1,0 +1,30 @@
+{
+  "id": "register_alice",
+  "label": "register_alice",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:3000/auth/register",
+    "headers": {},
+    "body": {
+      "username": "alice",
+      "password": "P@ssw0rd"
+    }
+  },
+  "response": {
+    "status": 201,
+    "data": {
+      "message": "User registered successfully",
+      "user": {
+        "id": 1,
+        "username": "alice",
+        "email": null,
+        "dateOfBirth": null,
+        "country": null,
+        "organization": null,
+        "rating": 1500
+      }
+    }
+  },
+  "error": null,
+  "ms": 106
+}
