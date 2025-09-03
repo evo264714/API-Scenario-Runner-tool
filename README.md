@@ -1,9 +1,7 @@
 # 🧪 API Scenario Runner
 
 A **general-purpose REST API testing tool** built with Node.js.  
-It executes test **scenarios defined in JSON**, manages authentication tokens across steps, performs assertions, and saves evidence automatically.  
-
-This repository also includes a **30-test scenario file** for the Mock Competitive Programming API (assignment target).
+It executes test **scenarios defined in JSON**, manages authentication tokens across steps, performs assertions, and saves evidence automatically. 
 
 ---
 
