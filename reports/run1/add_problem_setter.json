@@ -1,0 +1,26 @@
+{
+  "id": "add_problem_setter",
+  "label": "add_problem_setter_f2",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:3000/contests/problems",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJpYXQiOjE3NTYyNzg5NTAsImV4cCI6MTc1NjI4MjU1MH0.QvsvDqlrbsc16gy2r2qBYqJCnT56A7nlaOAXmQM5MQc"
+    },
+    "body": {
+      "contestId": "",
+      "name": "Sum 1r1sio8j",
+      "statement": "Add",
+      "inputFormat": "a b",
+      "outputFormat": "a+b"
+    }
+  },
+  "response": {
+    "status": 400,
+    "data": {
+      "message": "Contest ID and Problem ID are required"
+    }
+  },
+  "error": null,
+  "ms": 3
+}

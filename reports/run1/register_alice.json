@@ -11,20 +11,11 @@
     }
   },
   "response": {
-    "status": 201,
+    "status": 400,
     "data": {
-      "message": "User registered successfully",
-      "user": {
-        "id": 1,
-        "username": "alice",
-        "email": null,
-        "dateOfBirth": null,
-        "country": null,
-        "organization": null,
-        "rating": 1500
-      }
+      "message": "Username already exists"
     }
   },
   "error": null,
-  "ms": 106
+  "ms": 29
 }

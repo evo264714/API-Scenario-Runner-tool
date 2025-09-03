@@ -1,10 +1,3 @@
-#!/usr/bin/env node
-/**
- * API Scenario Runner
- * - Scenario-driven REST tester with var templating, assertions, saves, basic fuzzing, CSV report
- * Usage:
- *   node runner.js scenarios/competitive.json http://localhost:3000 --report reports/run1 --fuzz 0
- */
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
@@ -27,7 +20,6 @@ const fuzzCount = (() => {
 
 fs.mkdirSync(reportDir, { recursive: true });
 
-/** Helpers **/
 const saveJSON = (p, obj) => fs.writeFileSync(p, JSON.stringify(obj, null, 2));
 const toCSVRow = (arr) => arr.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",");
 const getPath = (obj, dotPath) => dotPath.split(".").reduce((o,k)=> (o==null?undefined:o[k]), obj);
@@ -45,12 +37,6 @@ const deepTemplate = (val, ctx) => {
 };
 const randStr = (n=8)=>Math.random().toString(36).slice(2,2+n);
 
-/** Assertions:
- * expect: {
- *   status: 200 or [200,201],
- *   body: { "field.path": "valueOr/regex/", "exists": ["a.b"], "notExists": ["x.y"] }
- * }
- */
 function checkExpect(expect, res) {
   let ok = true;
   const notes = [];
@@ -96,7 +82,6 @@ function checkExpect(expect, res) {
   return { ok, notes: notes.join("; ") };
 }
 
-/** Run one HTTP step */
 async function runStep(step, ctx, label) {
   const reqBody = deepTemplate(step.body || {}, ctx);
   const reqHeaders = deepTemplate(step.headers || {}, ctx);
@@ -110,7 +95,7 @@ async function runStep(step, ctx, label) {
       url,
       data: reqBody,
       headers: reqHeaders,
-      validateStatus: () => true // we'll assert ourselves
+      validateStatus: () => true
     });
   } catch (e) {
     errOut = { message: e.message, stack: e.stack };
@@ -126,7 +111,6 @@ async function runStep(step, ctx, label) {
     ms: endedAt - startedAt
   };
 
-  // save variables
   if (res && step.save) {
     for (const [k, p] of Object.entries(step.save)) {
       ctx[k] = p.startsWith("header.")
@@ -135,7 +119,6 @@ async function runStep(step, ctx, label) {
     }
   }
 
-  // expect
   let pass = false, notes = "no assertions";
   if (res && step.expect) {
     const r = checkExpect(step.expect, res);
@@ -151,15 +134,14 @@ async function runStep(step, ctx, label) {
 
 (async () => {
   const scenario = JSON.parse(fs.readFileSync(scenarioPath, "utf8"));
-  const ctx = {}; // shared variables
+  const ctx = {};
   const summaryRows = [["TestID","Description","Status","HTTP","Notes","Evidence"]];
 
   for (const step of scenario) {
     const times = (fuzzCount > 0 && step.fuzz) ? (1 + fuzzCount) : 1;
     for (let i=0; i<times; i++) {
-      // simple fuzz: replace any string value "FZZ" with random string
       if (i>0 && step.fuzz && step.body) {
-        const mutated = JSON.parse(JSON.stringify(step.body), (k,v)=>{
+        const mutated = JSON.parse(JSON.stringify(step.body), (k,v)=>{ 
           if (typeof v === "string") return v.replace(/FZZ/g, randStr());
           return v;
         });

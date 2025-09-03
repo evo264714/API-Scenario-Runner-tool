@@ -23,6 +23,27 @@
       "url": "/auth/profile",
       "headers": {"Authorization":"Bearer {{token}}"},
       "expect": { "status": 200, "body": { "username": "alice" } }
+    },
+    {
+      "id": "create_future_contest",
+      "title": "Create contest (future)",
+      "method": "POST",
+      "url": "/contests",
+      "headers": {"Authorization":"Bearer {{token}}"},
+      "body": {"name":"API Contest","dateTime":"2029-01-01T00:00:00","duration":60},
+      "expect": { "status": [200,201], "body": { "id": "/\\d+/", "name":"API Contest" } },
+      "save": { "contestId": "json.id" }
+    },
+    {
+      "id": "add_problem_setter",
+      "title": "Add problem (setter)",
+      "method": "POST",
+      "url": "/contests/problems",
+      "headers": {"Authorization":"Bearer {{token}}"},
+      "body": {"contestId": "{{contestId}}","name":"Sum FZZ","statement":"Add","inputFormat":"a b","outputFormat":"a+b"},
+      "expect": { "status": [200,201], "body": { "id": "/\\d+/", "name": "/^Sum/" } },
+      "save": { "problemId": "json.id" },
+      "fuzz": true
     }
   ]
   

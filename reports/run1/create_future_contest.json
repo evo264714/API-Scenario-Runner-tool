@@ -1,0 +1,33 @@
+{
+  "id": "create_future_contest",
+  "label": "create_future_contest",
+  "request": {
+    "method": "POST",
+    "url": "http://localhost:3000/contests",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiYWxpY2UiLCJpYXQiOjE3NTYyNzg5NTAsImV4cCI6MTc1NjI4MjU1MH0.QvsvDqlrbsc16gy2r2qBYqJCnT56A7nlaOAXmQM5MQc"
+    },
+    "body": {
+      "name": "API Contest",
+      "dateTime": "2029-01-01T00:00:00",
+      "duration": 60
+    }
+  },
+  "response": {
+    "status": 201,
+    "data": {
+      "message": "Contest created successfully",
+      "contest": {
+        "id": 1,
+        "name": "API Contest",
+        "date": "2029-01-01T00:00:00",
+        "duration": 60,
+        "problems": 0,
+        "participants": 0,
+        "setter": "alice"
+      }
+    }
+  },
+  "error": null,
+  "ms": 4
+}
